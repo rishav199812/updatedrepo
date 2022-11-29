@@ -10,6 +10,16 @@ pipeline {
     stages {
         stage("create lambda zip based on tag") {
             steps {
+              script {
+            if ("${env.GIT_BRANCH}".contains("main")) {
+                ENV = 'prod'
+            } else {
+                ENV = 'dev'
+              fileOperations {
+            fileRenameOperation(destination: 'fetch_from_s3/.env', source: 'fetch_from_s3/dev.env')
+        }
+            }
+              }
                 script {
                     DIR_SIZE = sh(returnStdout: true, script: "git describe --tags `git rev-list --tags --max-count=1` ")
                 }
@@ -25,7 +35,7 @@ pipeline {
                 } else if ("${DIR_SIZE}".contains("s3lambda")) {
                     script{
                         zip archive: true, dir: 'fetch_from_s3', glob: '', zipFile: 'FetchFileS3n.zip'
-                        ZIP_FILE_NAME = 'FetchFileS3n.zip'
+                        ZIP_FILE_NAME = 'FetchFileS3p.zip'
                         LAMBDA_NAME = 'smartevents-fetchfroms3-lambda'
                     }
                    echo "${ZIP_FILE_NAME}"
