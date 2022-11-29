@@ -13,6 +13,7 @@ pipeline {
                 script {
                     DIR_SIZE = sh(returnStdout: true, script: "git describe --tags `git rev-list --tags --max-count=1` ")
                 }
+              script {
                 if ("${DIR_SIZE}".contains("pipeline")) {
                     script{
                         zip archive: true, dir: 'pipeline_processor', glob: '', zipFile: 'PipelineProcessor.zip'
@@ -27,6 +28,7 @@ pipeline {
                         ZIP_FILE_NAME = 'FetchFileS3.zip'
                         LAMBDA_NAME = 'smartevents-fetchfroms3-lambda'
                     }
+                }
                 }
             }
         }
