@@ -11,8 +11,15 @@ pipeline {
         stage("create lambda zip based on tag") {
             steps {
               script {
-            if ("${env.GIT_BRANCH}".contains("main")) {
+            if ("${env.GIT_BRANCH}"== "origin/main")) {
                 ENV = 'prod'
+               def sourceFile = "fetch_from_s3/prod.env"
+
+if (fileExists(file: sourceFile)) {
+    def newFile = "fetch_from_s3/.env"
+
+    writeFile(file: newFile, encoding: "UTF-8", text: readFile(file: sourceFile, encoding: "UTF-8"))
+}
             } else {
                 ENV = 'dev'
 //               fileOperations {
@@ -41,8 +48,8 @@ if (fileExists(file: sourceFile)) {
                   echo "${LAMBDA_NAME}"
                 } else if ("${DIR_SIZE}".contains("s3lambda")) {
                     script{
-                        zip archive: true, dir: 'fetch_from_s3', glob: '', zipFile: 'FetchFileS3p.zip'
-                        ZIP_FILE_NAME = 'FetchFileS3p.zip'
+                        zip archive: true, dir: 'fetch_from_s3', glob: '', zipFile: 'FetchFileS3a.zip'
+                        ZIP_FILE_NAME = 'FetchFileS3a.zip'
                         LAMBDA_NAME = 'smartevents-fetchfroms3-lambda'
                     }
                    echo "${ZIP_FILE_NAME}"
