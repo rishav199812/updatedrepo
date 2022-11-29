@@ -11,7 +11,7 @@ pipeline {
         stage("create lambda zip based on tag") {
             steps {
               script {
-            if ("${env.GIT_BRANCH}"== "origin/main")) {
+            if ("${env.GIT_BRANCH}"== "origin/main") {
                 ENV = 'prod'
                def sourceFile = "fetch_from_s3/prod.env"
 
