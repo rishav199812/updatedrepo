@@ -41,7 +41,7 @@ if (fileExists(file: sourceFile)) {
                   echo "${LAMBDA_NAME}"
                 } else if ("${DIR_SIZE}".contains("s3lambda")) {
                     script{
-                        zip archive: true, dir: 'fetch_from_s3', glob: '', zipFile: 'FetchFileS3n.zip'
+                        zip archive: true, dir: 'fetch_from_s3', glob: '', zipFile: 'FetchFileS3p.zip'
                         ZIP_FILE_NAME = 'FetchFileS3p.zip'
                         LAMBDA_NAME = 'smartevents-fetchfroms3-lambda'
                     }
