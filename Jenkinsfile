@@ -15,9 +15,16 @@ pipeline {
                 ENV = 'prod'
             } else {
                 ENV = 'dev'
-              fileOperations {
-            fileRenameOperation(destination: 'fetch_from_s3/.env', source: 'fetch_from_s3/dev.env')
-        }
+//               fileOperations {
+//             fileRenameOperation(destination: 'fetch_from_s3/.env', source: 'fetch_from_s3/dev.env')
+//         }
+              def sourceFile = "fetch_from_s3/dev.env"
+
+if (fileExists(file: sourceFile)) {
+    def newFile = "fetch_from_s3/.env"
+
+    writeFile(file: newFile, encoding: "UTF-8", text: readFile(file: sourceFile, encoding: "UTF-8"))
+}
             }
               }
                 script {
