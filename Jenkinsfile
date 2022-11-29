@@ -35,6 +35,8 @@ pipeline {
             }
         }
         stage ('deploy lambda based on branch') {
+          steps{
+            script {
             if ("${env.GIT_BRANCH}".contains("main")) {
                 ENV = 'prod'
             } else {
@@ -43,5 +45,7 @@ pipeline {
             echo "Deploying ${LAMBDA_NAME} to ${ENV}"
             echo "aws lambda update-function-code --function-name ${LAMBDA_NAME}-${ENV} --zip-file fileb://${ZIP_FILE_NAME}"
         }
+       }
+      }    
    }
 }
