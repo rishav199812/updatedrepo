@@ -24,8 +24,8 @@ pipeline {
                   echo "${LAMBDA_NAME}"
                 } else if ("${DIR_SIZE}".contains("s3lambda")) {
                     script{
-                        zip archive: true, dir: 'fetch_from_s3', glob: '', zipFile: 'FetchFileS3.zip'
-                        ZIP_FILE_NAME = 'FetchFileS3.zip'
+                        zip archive: true, dir: 'fetch_from_s3', glob: '', zipFile: 'FetchFileS3n.zip'
+                        ZIP_FILE_NAME = 'FetchFileS3n.zip'
                         LAMBDA_NAME = 'smartevents-fetchfroms3-lambda'
                     }
                    echo "${ZIP_FILE_NAME}"
@@ -34,14 +34,14 @@ pipeline {
                 }
             }
         }
-//         stage ('deploy lambda based on branch') {
-//             if ("${env.GIT_BRANCH}".contains("main")) {
-//                 ENV = 'prod'
-//             } else {
-//                 ENV = 'dev'
-//             }
-//             echo "Deploying ${LAMBDA_NAME} to ${ENV}"
-//             echo "aws lambda update-function-code --function-name ${LAMBDA_NAME}-${ENV} --zip-file fileb://${ZIP_FILE_NAME}"
-//         }
+        stage ('deploy lambda based on branch') {
+            if ("${env.GIT_BRANCH}".contains("main")) {
+                ENV = 'prod'
+            } else {
+                ENV = 'dev'
+            }
+            echo "Deploying ${LAMBDA_NAME} to ${ENV}"
+            echo "aws lambda update-function-code --function-name ${LAMBDA_NAME}-${ENV} --zip-file fileb://${ZIP_FILE_NAME}"
+        }
    }
 }
