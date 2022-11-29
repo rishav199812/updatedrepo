@@ -33,13 +33,13 @@ pipeline {
             }
         }
 //         stage ('deploy lambda based on branch') {
-//             if ("${env.GIT_BRANCH}".contains("master")) {
+//             if ("${env.GIT_BRANCH}".contains("main")) {
 //                 ENV = 'prod'
 //             } else {
 //                 ENV = 'dev'
 //             }
 //             echo "Deploying ${LAMBDA_NAME} to ${ENV}"
-//             sh "aws lambda update-function-code --function-name ${LAMBDA_NAME}-${ENV} --zip-file fileb://${ZIP_FILE_NAME}"
+//             echo "aws lambda update-function-code --function-name ${LAMBDA_NAME}-${ENV} --zip-file fileb://${ZIP_FILE_NAME}"
 //         }
    }
 }
