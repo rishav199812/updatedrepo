@@ -28,6 +28,8 @@ pipeline {
                         ZIP_FILE_NAME = 'FetchFileS3.zip'
                         LAMBDA_NAME = 'smartevents-fetchfroms3-lambda'
                     }
+                   echo "${ZIP_FILE_NAME}"
+                  echo "${LAMBDA_NAME}"
                 }
                 }
             }
