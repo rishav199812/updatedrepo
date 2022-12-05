@@ -9,11 +9,13 @@ pipeline {
 //         }
     stages {
       stage('Checkout') {
+        steps{
     GIT_BRANCH_LOCAL = sh (
         script: "echo $Branch | sed -e 's|origin/||g'",
         returnStdout: true
     ).trim()
     echo "Git branch: ${GIT_BRANCH_LOCAL}"
+        }
       }
         stage("create lambda zip based on tag") {
             steps {
