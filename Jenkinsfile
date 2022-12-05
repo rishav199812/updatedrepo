@@ -13,6 +13,7 @@ pipeline {
     stages {
         stage("create lambda zip based on tag") {
             steps {
+              echo "${GIT_LOCAL_BRANCH}"
               echo "${env.GIT_BRANCH}"
               echo "${env.GIT_BRANCH}"
               echo 'Pulling...' + env.BRANCH_NAME
