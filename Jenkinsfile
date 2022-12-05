@@ -10,10 +10,12 @@ pipeline {
     stages {
       stage('Checkout') {
         steps{
+          script {
     GIT_BRANCH_LOCAL = sh (
         script: "echo $Branch | sed -e 's|origin/||g'",
         returnStdout: true
     ).trim()
+          }
     echo "Git branch: ${GIT_BRANCH_LOCAL}"
         }
       }
