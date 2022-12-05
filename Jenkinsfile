@@ -1,5 +1,8 @@
 pipeline {
   agent any
+//    environment {
+//      BRANCH_NAME = "${GIT_BRANCH.split("/")[1]}"
+//   }
 //   { label 'ecs-agent' }
 //         options {
 //             disableConcurrentBuilds()
@@ -12,6 +15,8 @@ pipeline {
             steps {
               echo "${env.GIT_BRANCH}"
               echo "${env.GIT_BRANCH}"
+              echo 'Pulling...' + env.BRANCH_NAME
+              
               script {
             if ("${env.GIT_BRANCH}"== "origin/main") {
                 ENV = 'prod'
