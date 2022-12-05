@@ -11,6 +11,7 @@ pipeline {
         stage("create lambda zip based on tag") {
             steps {
               echo "${env.GIT_BRANCH}"
+              echo "${env.GIT_BRANCH}"
               script {
             if ("${env.GIT_BRANCH}"== "origin/main") {
                 ENV = 'prod'
