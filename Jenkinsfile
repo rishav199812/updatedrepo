@@ -8,6 +8,13 @@ pipeline {
 //             region = 'eu-west-1'
 //         }
     stages {
+      stage('Checkout') {
+    GIT_BRANCH_LOCAL = sh (
+        script: "echo $Branch | sed -e 's|origin/||g'",
+        returnStdout: true
+    ).trim()
+    echo "Git branch: ${GIT_BRANCH_LOCAL}"
+      }
         stage("create lambda zip based on tag") {
             steps {
               echo "${env.GIT_BRANCH}"
