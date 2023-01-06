@@ -11,7 +11,7 @@ pipeline {
       }
     stage('Scan') {
       environment {
-                scannerHome = tool 'sonar-scanner'
+                scannerHome = D:\sonar-scanner-4.7.0.2747-windows
             }
       steps {
         withSonarQubeEnv(installationName: 'sq1') { 
