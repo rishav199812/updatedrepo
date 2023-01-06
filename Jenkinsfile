@@ -15,8 +15,8 @@ pipeline {
             }
       steps {
         withSonarQubeEnv(installationName: 'sq1') { 
-          sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
-          //sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=simple-test-sonar  -Dsonar.sources=.  "
+          //sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+          sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=simple-test-sonar  -Dsonar.sources=.  "
         }
       }
     }
