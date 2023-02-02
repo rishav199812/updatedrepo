@@ -12,7 +12,7 @@ pipeline {
     stage ('Test'){
       steps {
         script {
-        if [ -d "$fetch_from_s3" ]; then rm -Rf $fetch_from_s3; fi
+        if [ -d "fetch_from_s3" ]; then rm -Rf fetch_from_s3; fi
       }
       }
     }
