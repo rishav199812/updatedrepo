@@ -14,7 +14,7 @@ pipeline {
         script {
           DIR = "fetch_from_s3"
         if ( -d "$DIR" )
-          sh "rm -Rf $DIR";
+          sh "rm -Rf $DIR"
           fi
       }
       }
