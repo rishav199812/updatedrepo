@@ -12,8 +12,9 @@ pipeline {
     stage ('Test'){
       steps {
         script {
-        if ( -d "fetch_from_s3" )
-          rm -Rf fetch_from_s3;
+          DIR = "fetch_from_s3"
+        if ( -d "$DIR" )
+          sh "rm -Rf $DIR";
           fi
       }
       }
