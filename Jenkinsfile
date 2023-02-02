@@ -9,6 +9,11 @@ pipeline {
               echo "Hello World"
           }
       }
+    stage ('Test'){
+      steps {
+        if [ -d "$fetch_from_s3" ]; then rm -Rf $fetch_from_s3; fi
+      }
+    }
     stage('Scan') {
       environment {
                 scannerHome = tool 'sonar-scanner'
