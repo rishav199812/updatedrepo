@@ -12,10 +12,10 @@ pipeline {
     stage ('Test'){
       steps {
         script {
-          DIR = "fetch_from_s3"
-        if ( -d "$DIR" )
-          sh "rm -Rf $DIR"
-          fi
+          sh """
+                            #!/bin/bash
+                           if [ -d "fetch_from_s3" ]; then rm -Rf fetch_from_s3; fi
+                            """
       }
       }
     }
